@@ -10,9 +10,11 @@
     
     <Grid>
         <!-- 标题栏 -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Background="#2D2D2D" Padding="20">
-            <TextBlock Text="Score Editor" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF" />
-        </StackPanel>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Background="#2D2D2D" Padding="20" CornerRadius="5">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Score Editor" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF" />
+            </StackPanel>
+        </Border>
         
         <!-- 编辑器区域 -->
         <Grid Margin="20,80,20,120" Background="#2D2D2D">
@@ -87,10 +89,12 @@
         </Grid>
         
         <!-- 底部控制栏 -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20" Background="#2D2D2D" Padding="20" CornerRadius="5">
-            <Button Content="Save Score" Style="{StaticResource GameButton}" Click="SaveScoreButton_Click" />
-            <Button Content="Load Score" Style="{StaticResource GameButton}" Click="LoadScoreButton_Click" />
-            <Button Content="Clear All" Style="{StaticResource GameButton}" Click="ClearAllButton_Click" />
-        </StackPanel>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20" Background="#2D2D2D" Padding="20" CornerRadius="5">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Save Score" Style="{StaticResource GameButton}" Click="SaveScoreButton_Click" />
+                <Button Content="Load Score" Style="{StaticResource GameButton}" Click="LoadScoreButton_Click" />
+                <Button Content="Clear All" Style="{StaticResource GameButton}" Click="ClearAllButton_Click" />
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>
