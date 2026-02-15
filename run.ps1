@@ -31,14 +31,18 @@ try {
     exit 1
 }
 
-# Create WPF project
+# Check if project already exists
 Write-Host ""
-Write-Host "[2/5] Creating WPF project..."
+Write-Host "[2/5] Checking project structure..."
 try {
-    dotnet new wpf -n MusicGame -o . --force
-    Write-Host "✓ WPF project created successfully"
+    if (-Not (Test-Path -Path "MusicGame.csproj")) {
+        dotnet new wpf -n MusicGame -o .
+        Write-Host "✓ WPF project created successfully"
+    } else {
+        Write-Host "✓ Project already exists, skipping creation"
+    }
 } catch {
-    Write-Host "✗ Failed to create WPF project: $_"
+    Write-Host "✗ Failed to check/create project: $_"
     exit 1
 }
 
@@ -54,11 +58,11 @@ try {
     exit 1
 }
 
-# Create project directory structure
+# Create project directory structure if missing
 Write-Host ""
-Write-Host "[4/5] Creating project directory structure..."
+Write-Host "[4/5] Checking project directory structure..."
 try {
-    # Create directories
+    # Create directories if they don't exist
     $directories = @(
         "Models",
         "ViewModels",
@@ -68,37 +72,55 @@ try {
     )
     
     foreach ($dir in $directories) {
-        New-Item -ItemType Directory -Path $dir -Force | Out-Null
-        Write-Host "  ✓ Created directory: $dir"
+        if (-Not (Test-Path -Path $dir)) {
+            New-Item -ItemType Directory -Path $dir | Out-Null
+            Write-Host "  ✓ Created directory: $dir"
+        } else {
+            Write-Host "  ✓ Directory already exists: $dir"
+        }
     }
     
-    # Create Models
-    New-Item -ItemType File -Path "Models\MusicFile.cs" -Force | Out-Null
-    New-Item -ItemType File -Path "Models\Note.cs" -Force | Out-Null
-    New-Item -ItemType File -Path "Models\Score.cs" -Force | Out-Null
+    # Create empty files only if they don't exist
+    $files = @(
+        "Models\MusicFile.cs",
+        "Models\Note.cs",
+        "Models\Score.cs",
+        "ViewModels\MainViewModel.cs",
+        "ViewModels\PlayerViewModel.cs",
+        "ViewModels\EditorViewModel.cs",
+        "Services\AudioPlayer.cs",
+        "Services\ScoreManager.cs",
+        "Utilities\Helper.cs"
+    )
     
-    # Create ViewModels
-    New-Item -ItemType File -Path "ViewModels\MainViewModel.cs" -Force | Out-Null
-    New-Item -ItemType File -Path "ViewModels\PlayerViewModel.cs" -Force | Out-Null
-    New-Item -ItemType File -Path "ViewModels\EditorViewModel.cs" -Force | Out-Null
+    foreach ($file in $files) {
+        if (-Not (Test-Path -Path $file)) {
+            New-Item -ItemType File -Path $file | Out-Null
+            Write-Host "  ✓ Created file: $file"
+        }
+    }
     
-    # Create Views
-    New-Item -ItemType File -Path "Views\PlayerView.xaml" -Force | Out-Null
-    New-Item -ItemType File -Path "Views\PlayerView.xaml.cs" -Force | Out-Null
-    New-Item -ItemType File -Path "Views\EditorView.xaml" -Force | Out-Null
-    New-Item -ItemType File -Path "Views\EditorView.xaml.cs" -Force | Out-Null
-    New-Item -ItemType File -Path "Views\Styles.xaml" -Force | Out-Null
+    # Special handling for XAML files - don't overwrite if they exist
+    $xamlFiles = @(
+        "Views\PlayerView.xaml",
+        "Views\PlayerView.xaml.cs",
+        "Views\EditorView.xaml",
+        "Views\EditorView.xaml.cs",
+        "Views\Styles.xaml"
+    )
     
-    # Create Services
-    New-Item -ItemType File -Path "Services\AudioPlayer.cs" -Force | Out-Null
-    New-Item -ItemType File -Path "Services\ScoreManager.cs" -Force | Out-Null
+    foreach ($xamlFile in $xamlFiles) {
+        if (-Not (Test-Path -Path $xamlFile)) {
+            New-Item -ItemType File -Path $xamlFile | Out-Null
+            Write-Host "  ✓ Created XAML file: $xamlFile"
+        } else {
+            Write-Host "  ✓ XAML file already exists, skipping: $xamlFile"
+        }
+    }
     
-    # Create Utilities
-    New-Item -ItemType File -Path "Utilities\Helper.cs" -Force | Out-Null
-    
-    Write-Host "✓ Project directory structure created successfully"
+    Write-Host "✓ Project directory structure checked successfully"
 } catch {
-    Write-Host "✗ Failed to create directory structure: $_"
+    Write-Host "✗ Failed to check directory structure: $_"
     exit 1
 }
 
