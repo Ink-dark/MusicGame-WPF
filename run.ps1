@@ -1,64 +1,64 @@
 <#
 .SYNOPSIS
-MusicGame-WPF 项目创建和构建脚本
+MusicGame-WPF Project Creation and Build Script
 
 .DESCRIPTION
-此脚本用于创建、配置和构建 MusicGame-WPF 项目。
+This script is used to create, configure, and build the MusicGame-WPF project.
 
 .NOTES
-作者: MusicGame 开发团队
-版本: 1.0
+Author: MusicGame Development Team
+Version: 1.1
 #>
 
-# 设置错误处理
+# Set error handling
 $ErrorActionPreference = "Stop"
 
 Write-Host "========================================"
-Write-Host "MusicGame-WPF 项目创建和构建脚本"
+Write-Host "MusicGame-WPF Project Setup Script"
 Write-Host "========================================"
 Write-Host ""
 
-# 检查 .NET SDK 是否安装
-Write-Host "[1/5] 检查 .NET SDK 安装情况..."
+# Check if .NET SDK is installed
+Write-Host "[1/5] Checking .NET SDK installation..."
 $dotnetInstalled = $false
 try {
     $dotnetVersion = dotnet --version
-    Write-Host "✓ .NET SDK 已安装: $dotnetVersion"
+    Write-Host "✓ .NET SDK installed: $dotnetVersion"
     $dotnetInstalled = $true
 } catch {
-    Write-Host "✗ .NET SDK 未安装，请先安装 .NET 8 SDK:"
-    Write-Host "  下载地址: https://dotnet.microsoft.com/download/dotnet/8.0"
+    Write-Host "✗ .NET SDK not installed. Please install .NET 8 SDK first:"
+    Write-Host "  Download: https://dotnet.microsoft.com/download/dotnet/8.0"
     exit 1
 }
 
-# 创建 WPF 项目
+# Create WPF project
 Write-Host ""
-Write-Host "[2/5] 创建 WPF 项目..."
+Write-Host "[2/5] Creating WPF project..."
 try {
     dotnet new wpf -n MusicGame -o . --force
-    Write-Host "✓ WPF 项目创建成功"
+    Write-Host "✓ WPF project created successfully"
 } catch {
-    Write-Host "✗ 创建 WPF 项目失败: $_"
+    Write-Host "✗ Failed to create WPF project: $_"
     exit 1
 }
 
-# 添加项目依赖
+# Add project dependencies
 Write-Host ""
-Write-Host "[3/5] 添加项目依赖..."
+Write-Host "[3/5] Adding project dependencies..."
 try {
     dotnet add package NAudio --version 2.2.1
     dotnet add package MvvmLightLibs --version 5.4.1.1
-    Write-Host "✓ 依赖添加成功"
+    Write-Host "✓ Dependencies added successfully"
 } catch {
-    Write-Host "✗ 添加依赖失败: $_"
+    Write-Host "✗ Failed to add dependencies: $_"
     exit 1
 }
 
-# 创建项目目录结构
+# Create project directory structure
 Write-Host ""
-Write-Host "[4/5] 创建项目目录结构..."
+Write-Host "[4/5] Creating project directory structure..."
 try {
-    # 创建目录
+    # Create directories
     $directories = @(
         "Models",
         "ViewModels",
@@ -69,58 +69,58 @@ try {
     
     foreach ($dir in $directories) {
         New-Item -ItemType Directory -Path $dir -Force | Out-Null
-        Write-Host "  ✓ 创建目录: $dir"
+        Write-Host "  ✓ Created directory: $dir"
     }
     
-    # 创建 Models
+    # Create Models
     New-Item -ItemType File -Path "Models\MusicFile.cs" -Force | Out-Null
     New-Item -ItemType File -Path "Models\Note.cs" -Force | Out-Null
     New-Item -ItemType File -Path "Models\Score.cs" -Force | Out-Null
     
-    # 创建 ViewModels
+    # Create ViewModels
     New-Item -ItemType File -Path "ViewModels\MainViewModel.cs" -Force | Out-Null
     New-Item -ItemType File -Path "ViewModels\PlayerViewModel.cs" -Force | Out-Null
     New-Item -ItemType File -Path "ViewModels\EditorViewModel.cs" -Force | Out-Null
     
-    # 创建 Views
+    # Create Views
     New-Item -ItemType File -Path "Views\PlayerView.xaml" -Force | Out-Null
     New-Item -ItemType File -Path "Views\PlayerView.xaml.cs" -Force | Out-Null
     New-Item -ItemType File -Path "Views\EditorView.xaml" -Force | Out-Null
     New-Item -ItemType File -Path "Views\EditorView.xaml.cs" -Force | Out-Null
     New-Item -ItemType File -Path "Views\Styles.xaml" -Force | Out-Null
     
-    # 创建 Services
+    # Create Services
     New-Item -ItemType File -Path "Services\AudioPlayer.cs" -Force | Out-Null
     New-Item -ItemType File -Path "Services\ScoreManager.cs" -Force | Out-Null
     
-    # 创建 Utilities
+    # Create Utilities
     New-Item -ItemType File -Path "Utilities\Helper.cs" -Force | Out-Null
     
-    Write-Host "✓ 项目目录结构创建完成"
+    Write-Host "✓ Project directory structure created successfully"
 } catch {
-    Write-Host "✗ 创建目录结构失败: $_"
+    Write-Host "✗ Failed to create directory structure: $_"
     exit 1
 }
 
-# 构建项目
+# Build project
 Write-Host ""
-Write-Host "[5/5] 构建项目..."
+Write-Host "[5/5] Building project..."
 try {
     dotnet build -c Release
-    Write-Host "✓ 项目构建成功"
+    Write-Host "✓ Project built successfully"
 } catch {
-    Write-Host "✗ 项目构建失败: $_"
+    Write-Host "✗ Failed to build project: $_"
     exit 1
 }
 
 Write-Host ""
 Write-Host "========================================"
-Write-Host "✓ 项目创建和构建完成！"
+Write-Host "✓ Project setup completed!"
 Write-Host "========================================"
 Write-Host ""
-Write-Host "使用以下命令运行项目:"
+Write-Host "To run the project:"
 Write-Host "  dotnet run"
 Write-Host ""
-Write-Host "或直接运行生成的可执行文件:"
-Write-Host '  .\bin\Release\net8.0-windows\MusicGame.exe'
+Write-Host "Or run the executable directly:"
+Write-Host "  .\bin\Release\net8.0-windows\MusicGame.exe"
 Write-Host ""
