@@ -6,35 +6,36 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="800"
-             Background="#1A1A1A">
+             Background="#FFFFFF">
     
     <Grid>
         <!-- 游戏标题 -->
         <TextBlock Text="MusicGame" FontSize="24" FontWeight="Bold" 
                    HorizontalAlignment="Center" VerticalAlignment="Top" 
-                   Margin="10" Foreground="#FFFFFF" />
+                   Margin="10" Foreground="#000000" />
         
         <!-- 游戏区域 -->
-        <Grid x:Name="GameArea" Margin="20,60,20,120" Background="#2D2D2D">
-            <!-- 六线 -->
+        <Grid x:Name="GameArea" Margin="20,60,20,120" Background="#FFFFFF">
+            <!-- 判定线 -->
+            <Line x:Name="JudgmentLine" X1="0" Y1="400" X2="1000" Y2="400" Style="{StaticResource JudgmentLineStyle}" />
+            
+            <!-- 六线（垂直线，等间距分布） -->
             <Canvas x:Name="StringsCanvas" Background="Transparent">
-                <Line X1="0" Y1="50" X2="1000" Y2="50" Style="{StaticResource StringLineStyle}" />
-                <Line X1="0" Y1="150" X2="1000" Y2="150" Style="{StaticResource StringLineStyle}" />
-                <Line X1="0" Y1="250" X2="1000" Y2="250" Style="{StaticResource StringLineStyle}" />
-                <Line X1="0" Y1="350" X2="1000" Y2="350" Style="{StaticResource StringLineStyle}" />
-                <Line X1="0" Y1="450" X2="1000" Y2="450" Style="{StaticResource StringLineStyle}" />
-                <Line X1="0" Y1="550" X2="1000" Y2="550" Style="{StaticResource StringLineStyle}" />
+                <!-- 垂直线，间距150 -->
+                <Line X1="100" Y1="0" X2="100" Y2="600" Style="{StaticResource StringLineStyle}" />
+                <Line X1="250" Y1="0" X2="250" Y2="600" Style="{StaticResource StringLineStyle}" />
+                <Line X1="400" Y1="0" X2="400" Y2="600" Style="{StaticResource StringLineStyle}" />
+                <Line X1="550" Y1="0" X2="550" Y2="600" Style="{StaticResource StringLineStyle}" />
+                <Line X1="700" Y1="0" X2="700" Y2="600" Style="{StaticResource StringLineStyle}" />
+                <Line X1="850" Y1="0" X2="850" Y2="600" Style="{StaticResource StringLineStyle}" />
             </Canvas>
             
             <!-- 音符容器 -->
             <Canvas x:Name="NotesCanvas" Background="Transparent" />
-            
-            <!-- 判定线 -->
-            <Line x:Name="JudgmentLine" X1="0" Y1="300" X2="1000" Y2="300" Style="{StaticResource JudgmentLineStyle}" />
         </Grid>
         
         <!-- 游戏信息 -->
-        <Grid Margin="20,680,20,20" Height="60" Background="#2D2D2D">
+        <Grid Margin="20,680,20,20" Height="60" Background="#F0F0F0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -42,17 +43,17 @@
             </Grid.ColumnDefinitions>
             
             <StackPanel Grid.Column="0" HorizontalAlignment="Center">
-                <TextBlock Text="Score" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF" />
-                <TextBlock x:Name="ScoreText" Text="0" FontSize="24" FontWeight="Bold" Foreground="#FFEB3B" />
+                <TextBlock Text="Score" FontSize="16" FontWeight="Bold" Foreground="#000000" />
+                <TextBlock x:Name="ScoreText" Text="0" FontSize="24" FontWeight="Bold" Foreground="#FF9800" />
             </StackPanel>
             
             <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                <TextBlock Text="Combo" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF" />
+                <TextBlock Text="Combo" FontSize="16" FontWeight="Bold" Foreground="#000000" />
                 <TextBlock x:Name="ComboText" Text="0" FontSize="24" FontWeight="Bold" Foreground="#4CAF50" />
             </StackPanel>
             
             <StackPanel Grid.Column="2" HorizontalAlignment="Center">
-                <TextBlock Text="Accuracy" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF" />
+                <TextBlock Text="Accuracy" FontSize="16" FontWeight="Bold" Foreground="#000000" />
                 <TextBlock x:Name="AccuracyText" Text="0%" FontSize="24" FontWeight="Bold" Foreground="#2196F3" />
             </StackPanel>
         </Grid>

@@ -6,18 +6,18 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="800"
-             Background="#1A1A1A">
+             Background="#FFFFFF">
     
     <Grid>
         <!-- 标题栏 -->
-        <Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Background="#2D2D2D" Padding="20" CornerRadius="5">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Background="#F0F0F0" Padding="20" CornerRadius="5">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Score Editor" FontSize="24" FontWeight="Bold" Foreground="#FFFFFF" />
+                <TextBlock Text="Score Editor" FontSize="24" FontWeight="Bold" Foreground="#000000" />
             </StackPanel>
         </Border>
         
         <!-- 编辑器区域 -->
-        <Grid Margin="20,80,20,120" Background="#2D2D2D">
+        <Grid Margin="20,80,20,120" Background="#FFFFFF">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="200" />
@@ -25,14 +25,15 @@
             
             <!-- 左侧编辑区域 -->
             <Grid Grid.Column="0">
-                <!-- 六线 -->
+                <!-- 六线（垂直线，等间距分布） -->
                 <Canvas x:Name="StringsCanvas" Background="Transparent">
-                    <Line X1="0" Y1="50" X2="1000" Y2="50" Style="{StaticResource StringLineStyle}" />
-                    <Line X1="0" Y1="150" X2="1000" Y2="150" Style="{StaticResource StringLineStyle}" />
-                    <Line X1="0" Y1="250" X2="1000" Y2="250" Style="{StaticResource StringLineStyle}" />
-                    <Line X1="0" Y1="350" X2="1000" Y2="350" Style="{StaticResource StringLineStyle}" />
-                    <Line X1="0" Y1="450" X2="1000" Y2="450" Style="{StaticResource StringLineStyle}" />
-                    <Line X1="0" Y1="550" X2="1000" Y2="550" Style="{StaticResource StringLineStyle}" />
+                    <!-- 垂直线，间距150 -->
+                    <Line X1="100" Y1="0" X2="100" Y2="600" Style="{StaticResource StringLineStyle}" />
+                    <Line X1="250" Y1="0" X2="250" Y2="600" Style="{StaticResource StringLineStyle}" />
+                    <Line X1="400" Y1="0" X2="400" Y2="600" Style="{StaticResource StringLineStyle}" />
+                    <Line X1="550" Y1="0" X2="550" Y2="600" Style="{StaticResource StringLineStyle}" />
+                    <Line X1="700" Y1="0" X2="700" Y2="600" Style="{StaticResource StringLineStyle}" />
+                    <Line X1="850" Y1="0" X2="850" Y2="600" Style="{StaticResource StringLineStyle}" />
                 </Canvas>
                 
                 <!-- 音符容器 -->
@@ -40,14 +41,14 @@
                 
                 <!-- 时间轴 -->
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Margin="0,580,0,0">
-                    <Canvas x:Name="TimelineCanvas" Height="40" Background="#1A1A1A" />
+                    <Canvas x:Name="TimelineCanvas" Height="40" Background="#F0F0F0" />
                 </ScrollViewer>
             </Grid>
             
             <!-- 右侧属性面板 -->
-            <Grid Grid.Column="1" Margin="10,0,0,0" Background="#1A1A1A">
+            <Grid Grid.Column="1" Margin="10,0,0,0" Background="#F0F0F0">
                 <StackPanel>
-                    <TextBlock Text="Note Properties" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF" Margin="10,10,10,5" />
+                    <TextBlock Text="Note Properties" FontSize="16" FontWeight="Bold" Foreground="#000000" Margin="10,10,10,5" />
                     
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
@@ -61,13 +62,13 @@
                             <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Line:" FontSize="14" Foreground="#FFFFFF" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Line:" FontSize="14" Foreground="#000000" VerticalAlignment="Center" />
                         <ComboBox Grid.Column="1" Grid.Row="0" x:Name="LineComboBox" Width="100" Margin="5" />
                         
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Time:" FontSize="14" Foreground="#FFFFFF" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="Time:" FontSize="14" Foreground="#000000" VerticalAlignment="Center" />
                         <TextBox Grid.Column="1" Grid.Row="1" x:Name="TimeTextBox" Width="100" Margin="5" />
                         
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Duration:" FontSize="14" Foreground="#FFFFFF" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="Duration:" FontSize="14" Foreground="#000000" VerticalAlignment="Center" />
                         <TextBox Grid.Column="1" Grid.Row="2" x:Name="DurationTextBox" Width="100" Margin="5" />
                         
                         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5">
@@ -76,9 +77,9 @@
                         </StackPanel>
                     </Grid>
                     
-                    <Separator Margin="10" Height="1" Background="#444444" />
+                    <Separator Margin="10" Height="1" Background="#CCCCCC" />
                     
-                    <TextBlock Text="Music" FontSize="16" FontWeight="Bold" Foreground="#FFFFFF" Margin="10,10,10,5" />
+                    <TextBlock Text="Music" FontSize="16" FontWeight="Bold" Foreground="#000000" Margin="10,10,10,5" />
                     <StackPanel Margin="10">
                         <Button Content="Load Music" Style="{StaticResource GameButton}" Click="LoadMusicButton_Click" />
                         <Button Content="Play Music" Style="{StaticResource GameButton}" Click="PlayMusicButton_Click" />
@@ -89,7 +90,7 @@
         </Grid>
         
         <!-- 底部控制栏 -->
-        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20" Background="#2D2D2D" Padding="20" CornerRadius="5">
+        <Border HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20" Background="#F0F0F0" Padding="20" CornerRadius="5">
             <StackPanel Orientation="Horizontal">
                 <Button Content="Save Score" Style="{StaticResource GameButton}" Click="SaveScoreButton_Click" />
                 <Button Content="Load Score" Style="{StaticResource GameButton}" Click="LoadScoreButton_Click" />

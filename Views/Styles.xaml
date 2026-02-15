@@ -35,15 +35,15 @@
     
     <!-- 判定线样式 -->
     <Style x:Key="JudgmentLineStyle" TargetType="Line">
-        <Setter Property="Stroke" Value="#FFEB3B" />
+        <Setter Property="Stroke" Value="#000000" />
         <Setter Property="StrokeThickness" Value="3" />
-        <Setter Property="StrokeDashArray" Value="5,5" />
+        <!-- 移除虚线样式，使用实线 -->
     </Style>
     
     <!-- 六线样式 -->
     <Style x:Key="StringLineStyle" TargetType="Line">
-        <Setter Property="Stroke" Value="#FFFFFF" />
+        <Setter Property="Stroke" Value="#000000" />
         <Setter Property="StrokeThickness" Value="2" />
-        <Setter Property="Opacity" Value="0.8" />
+        <Setter Property="Opacity" Value="1" />
     </Style>
 </ResourceDictionary>
