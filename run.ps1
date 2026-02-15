@@ -122,5 +122,5 @@ Write-Host "使用以下命令运行项目:"
 Write-Host "  dotnet run"
 Write-Host ""
 Write-Host "或直接运行生成的可执行文件:"
-Write-Host "  .\bin\Release\net8.0-windows\MusicGame.exe"
+Write-Host '  .\bin\Release\net8.0-windows\MusicGame.exe'
 Write-Host ""
