@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:MusicGame"
         xmlns:views="clr-namespace:MusicGame.Views"
         mc:Ignorable="d"
-        Title="MusicGame" Height="800" Width="1000">
+        Title="音乐游戏" Height="800" Width="1000">
     <Grid>
         <TabControl Margin="10">
-            <TabItem Header="Play">
+            <TabItem Header="游戏">
                 <views:PlayerView />
             </TabItem>
-            <TabItem Header="Edit">
+            <TabItem Header="编辑">
                 <views:EditorView />
             </TabItem>
         </TabControl>

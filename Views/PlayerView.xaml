@@ -10,7 +10,7 @@
     
     <Grid>
         <!-- 游戏标题 -->
-        <TextBlock Text="MusicGame" FontSize="24" FontWeight="Bold" 
+        <TextBlock Text="音乐游戏" FontSize="24" FontWeight="Bold" 
                    HorizontalAlignment="Center" VerticalAlignment="Top" 
                    Margin="10" Foreground="#000000" />
         
@@ -60,9 +60,9 @@
         
         <!-- 控制按钮 -->
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20" Orientation="Horizontal">
-            <Button Content="Play" Style="{StaticResource GameButton}" Click="PlayButton_Click" />
-            <Button Content="Pause" Style="{StaticResource GameButton}" Click="PauseButton_Click" />
-            <Button Content="Stop" Style="{StaticResource GameButton}" Click="StopButton_Click" />
+            <Button Content="播放" Style="{StaticResource GameButton}" Click="PlayButton_Click" />
+            <Button Content="暂停" Style="{StaticResource GameButton}" Click="PauseButton_Click" />
+            <Button Content="停止" Style="{StaticResource GameButton}" Click="StopButton_Click" />
         </StackPanel>
     </Grid>
 </UserControl>
