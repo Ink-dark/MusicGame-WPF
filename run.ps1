@@ -51,7 +51,7 @@ Write-Host ""
 Write-Host "[3/5] Adding project dependencies..."
 try {
     dotnet add package NAudio --version 2.2.1
-    dotnet add package MvvmLightLibs --version 5.4.1.1
+    dotnet add package CommunityToolkit.Mvvm --version 8.2.2
     Write-Host "✓ Dependencies added successfully"
 } catch {
     Write-Host "✗ Failed to add dependencies: $_"

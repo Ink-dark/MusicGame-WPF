@@ -42,9 +42,9 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-dotnet add package MvvmLightLibs --version 5.4.1.1
+dotnet add package CommunityToolkit.Mvvm --version 8.2.2
 if %errorlevel% neq 0 (
-    echo ✗ Failed to add MvvmLightLibs dependency
+    echo ✗ Failed to add CommunityToolkit.Mvvm dependency
     exit /b 1
 ) else (
     echo ✓ Dependencies added successfully
