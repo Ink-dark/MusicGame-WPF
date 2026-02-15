@@ -118,9 +118,25 @@ Write-Host "========================================"
 Write-Host "✓ Project setup completed!"
 Write-Host "========================================"
 Write-Host ""
-Write-Host "To run the project:"
-Write-Host "  dotnet run"
-Write-Host ""
-Write-Host "Or run the executable directly:"
-Write-Host "  .\bin\Release\net8.0-windows\MusicGame.exe"
-Write-Host ""
+
+# Ask user if they want to run the project
+$runProject = $true
+$userInput = Read-Host -Prompt "Do you want to run the project now? (Y/N)"
+if ($userInput -eq "N" -or $userInput -eq "n") {
+    $runProject = $false
+}
+
+if ($runProject) {
+    Write-Host ""
+    Write-Host "Running the project..."
+    Write-Host "========================================"
+    Write-Host ""
+    dotnet run
+} else {
+    Write-Host "To run the project:"
+    Write-Host "  dotnet run"
+    Write-Host ""
+    Write-Host "Or run the executable directly:"
+    Write-Host "  .\bin\Release\net8.0-windows\MusicGame.exe"
+    Write-Host ""
+}
