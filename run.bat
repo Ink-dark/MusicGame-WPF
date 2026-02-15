@@ -18,15 +18,19 @@ if %errorlevel% equ 0 (
     exit /b 1
 )
 
-REM Create WPF project
+REM Check if project already exists
 echo.
-echo [2/5] Creating WPF project...
-dotnet new wpf -n MusicGame -o . --force
-if %errorlevel% neq 0 (
-    echo ✗ Failed to create WPF project
-    exit /b 1
+echo [2/5] Checking project structure...
+if not exist "MusicGame.csproj" (
+    dotnet new wpf -n MusicGame -o .
+    if %errorlevel% neq 0 (
+        echo ✗ Failed to create WPF project
+        exit /b 1
+    ) else (
+        echo ✓ WPF project created successfully
+    )
 ) else (
-    echo ✓ WPF project created successfully
+    echo ✓ Project already exists, skipping creation
 )
 
 REM Add project dependencies
@@ -46,53 +50,69 @@ if %errorlevel% neq 0 (
     echo ✓ Dependencies added successfully
 )
 
-REM Create project directory structure
+REM Create project directory structure if missing
 echo.
-echo [4/5] Creating project directory structure...
+echo [4/5] Checking project directory structure...
 
-REM Create directories
+REM Create directories if they don't exist
 set DIRECTORIES=Models ViewModels Views Services Utilities
 for %%d in (%DIRECTORIES%) do (
-    mkdir "%%d" 2>nul
-    echo   ✓ Created directory: %%d
+    if not exist "%%d" (
+        mkdir "%%d"
+        echo   ✓ Created directory: %%d
+    ) else (
+        echo   ✓ Directory already exists: %%d
+    )
 )
 
-REM Create Models
+REM Create Models only if they don't exist
 set MODEL_FILES=MusicFile.cs Note.cs Score.cs
 for %%f in (%MODEL_FILES%) do (
-    type nul > "Models\%%f"
-    echo   ✓ Created file: Models\%%f
+    if not exist "Models\%%f" (
+        type nul > "Models\%%f"
+        echo   ✓ Created file: Models\%%f
+    )
 )
 
-REM Create ViewModels
+REM Create ViewModels only if they don't exist
 set VIEWMODEL_FILES=MainViewModel.cs PlayerViewModel.cs EditorViewModel.cs
 for %%f in (%VIEWMODEL_FILES%) do (
-    type nul > "ViewModels\%%f"
-    echo   ✓ Created file: ViewModels\%%f
+    if not exist "ViewModels\%%f" (
+        type nul > "ViewModels\%%f"
+        echo   ✓ Created file: ViewModels\%%f
+    )
 )
 
-REM Create Views
+REM Create Views only if they don't exist (especially XAML files)
 set VIEW_FILES=PlayerView.xaml PlayerView.xaml.cs EditorView.xaml EditorView.xaml.cs Styles.xaml
 for %%f in (%VIEW_FILES%) do (
-    type nul > "Views\%%f"
-    echo   ✓ Created file: Views\%%f
+    if not exist "Views\%%f" (
+        type nul > "Views\%%f"
+        echo   ✓ Created file: Views\%%f
+    ) else (
+        echo   ✓ File already exists, skipping: Views\%%f
+    )
 )
 
-REM Create Services
+REM Create Services only if they don't exist
 set SERVICE_FILES=AudioPlayer.cs ScoreManager.cs
 for %%f in (%SERVICE_FILES%) do (
-    type nul > "Services\%%f"
-    echo   ✓ Created file: Services\%%f
+    if not exist "Services\%%f" (
+        type nul > "Services\%%f"
+        echo   ✓ Created file: Services\%%f
+    )
 )
 
-REM Create Utilities
+REM Create Utilities only if they don't exist
 set UTILITY_FILES=Helper.cs
 for %%f in (%UTILITY_FILES%) do (
-    type nul > "Utilities\%%f"
-    echo   ✓ Created file: Utilities\%%f
+    if not exist "Utilities\%%f" (
+        type nul > "Utilities\%%f"
+        echo   ✓ Created file: Utilities\%%f
+    )
 )
 
-echo ✓ Project directory structure created successfully
+echo ✓ Project directory structure checked successfully
 
 REM Build project
 echo.
